@@ -199,19 +199,27 @@ pairwise alignment of two input networks. The multiple case is similar.
        (5.5) The predictions for the unannotated protein using the "Uniprot id" are in the file "Predictions/List-Predicted-GOTerms_rnd1".
        (5.6) The file "Predictions/scoreGOTerms_rnd1.txt" contains the scoring of GO Terms by transferring shared annotation to unannotated protein (marked with *) in each cluster belonging to the file "result/alignUnknown_rnd1.result".
        (5.7) The required time to align the input networks is located in the file "measure_time.txt".
-       (5.8) The sequence, topological and functional similarities for each pair of compared protein 
+       (5.8) The sequence and functional similarities for each pair of compared protein 
        is located in the file "result/scoreRecords.txt".
        (5.9) The informations : Alignment edges conserved for each species, the number of alignment nodes, 
        the Alpha parameter, nmax and the Alignment score, are located in the file "result/alignment_statistics.data".
-       (6.1) The number of unknown alignment records, and the number of proteins annotated with MF,BP and CC in alginment graph,
-       are located in the file "result/statistics.result".
+       (6.1) The number of unknown alignment records, and the number of proteins annotated with MF,BP and CC in alginment graph, are located in the file "result/statistics.result".
+       (6.2) The Mean Entropy and Mean Normalized Entropy value are located in the file "result/Metrics.result".
+       (6.3) The similarity between each GO Terms for a given cluster (resulted from the alignment of PPI) using the relevance metric is located in the file "result/scoreGOTerms_rnd1.txt"
+       (6.4) The fnctional similarity between each unannotated protein and its neighbours is loacated in the file "result/ComplexProteique.result".
+       (6.5) The prediction of GO Terms for each unannotated protein (with uniprot ID) is located in the files "Predictions/List-Predicted-GOTerms.txt" or in "Predictions/List-Predicted-GOTerms_rnd1.txt".
+       (6.6) The prediction of GO Terms for each unannotated protein (with CAFA ID) is located in the file "CAFA-Predicted-GOTerms_rnd1".
+(7)  EXAMPLE
+       (7.1) Download TANA freely available at Github website: https://github.com/waritheddine/TANA-2.0
 
-(6)  EXAMPLE
-       (6.1) Download TANA freely available at Github website: https://github.com/waritheddine/TANA
-
-       (6.2) Run TANA on our test dataset with command:
-       ./tana -alignment -alpha 0.3 -nmax 1000 -temp 50 -thr 0.3 -numspecies 8 -bscore true -numthreads 8 -alignmentfile ./result/alignment_TANA.data -resultfolder ./result/
-
-       (6.3)Then you can find the all the involved output files in ./result/ . There are many other functions which you can see with "-help" option.
-       (6.4) We note that checking the format of the files in the data folder after reading the execution instructions above might be quite helpful.
+       (7.2) Run TANA on our test dataset with command:
+       
+       A) Prediction process based on transferring GOA from the shared GO terms and from the direct network neighbours:
+       ./tana -alignment -out -alpha 0.3 -nmax 3000 -bscore true -neighbour true -thrNt 0.9 -numspecies 9 -numthreads 4 -alignmentfile ./result/alignment_TANA.data -resultfolder ./result/
+       
+       B)Prediction process based on only on transferring GOA from the shared GO terms :
+       ./tana -alignment -out -alpha 0.3 -nmax 3000 -bscore true -numspecies 9 -numthreads 4 -alignmentfile ./result/alignment_TANA.data -resultfolder ./result/
+       
+       (7.3)Then you can find the all the involved output files in ./result/ and prediction files in ./Predictions/. There are many other functions which you can see with "-help" option.
+       (7.4) We note that checking the format of the files in the data folder after reading the execution instructions above might be quite helpful.
        
