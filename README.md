@@ -210,6 +210,7 @@ pairwise alignment of two input networks. The multiple case is similar.
        (6.5) The prediction of GO Terms for each unannotated protein (with uniprot ID) is located in the files "Predictions/List-Predicted-GOTerms.txt" or in "Predictions/List-Predicted-GOTerms_rnd1.txt".
        (6.6) The prediction of GO Terms for each unannotated protein (with CAFA ID) is located in the file "CAFA-Predicted-GOTerms_rnd1".
 (7)  EXAMPLE
+       
        (7.1) Download TANA freely available at Github website: https://github.com/waritheddine/TANA-2.0
 
        (7.2) Run TANA on our test dataset with command:
