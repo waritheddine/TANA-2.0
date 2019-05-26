@@ -72,19 +72,11 @@ pairwise alignment of two input networks. The multiple case is similar.
 
   (2.3)  Gene ontology (GO) File
  
-     IMPORTANT: Download gene ontology file from the Website "http://www.geneontology.org/" and uncompress it 
-     under the "TANA\data" folder. The name should be "gene_ontology.1_2.obo" under the data folder.
-
-
   (2.4) GO annotation file which contains GO annotations for proteins in the input networks. The format of this GO annotation file should be compliant with the GO consortium.
      
     A) File: goa_uniprot_gcrp.gaf → This set contains all GO annotations for canonical accessions
       from the UniProt reference proteomes for all species, which provide one protein per gene.
-      
-    B) Files: goa_<species>.gaf for each species → This set contains all GO annotations for canonical accessions 
-      from the UniProt reference proteome for the species, which provides one protein per gene. 
-      
-      IMPORTANT: Download gene annotation files for each species from the Uniprot Website "http://www.ebi.ac.uk/goa/downloads" and uncompress them under the "TANA\data\goa" folder.
+
 
 (3) Create a file that specifies the file locations, species names etc.
    In the folder config/, the file "policy.input".
@@ -122,41 +114,78 @@ pairwise alignment of two input networks. The multiple case is similar.
    (4.2) Network files using blast bitscore:
       
       ./tana -alignment -alpha 0.3 -nmax 1000 -temp 50 -thr 0.3 -numspecies 3 -bscore true -numthreads 8 -alignmentfile ./result/alignment_TANA.data -resultfolder ./result/
+      
+   (4.3) Using the network neighbour and the shared GOA during the prediction process:
+      
+      ./tana -alignment -out -alpha 0.3 -nmax 3000 -bscore true -neighbour true -thrNt 0.9 -numspecies 9 -numthreads 4 -alignmentfile ./result/alignment_TANA.data -resultfolder ./result/
+      
+   (4.4) Using only the shared GOA during the prediction process:
+           
+      ./tana -alignment -out -alpha 0.3 -nmax 3000 -bscore true -numspecies 9 -numthreads 4 -alignmentfile ./result/alignment_TANA.data -resultfolder ./result/
 
    The options are as follows (you can also use the "-h" or "--help" flag):
 
+     Usage: 
      Usage:
-     ./tana -version|-alignment [--help|-h|-help] [-alignmentfile str]
-       [-alpha num] [-bscore] [-edgefactor num] [-nmax int] [-numspecies int]
-       [-numthreads int] [-resultfolder str] [-temp int] [-thr num]
-     Where:
-      --help|-h|-help
-         Print a short help message
-      -alignment
-         Execute the alignment algorithm.
-      -alignmentfile str
-         The filename of alignment of protein-protein interaction networks
-      -alpha num
-         Prameter controlling how much biological score contributes to the alignment score. Default is 0.3.
-      -bscore
-         Define bitscore as the similarity for the edges.
-      -edgefactor num
-         The factor of the power law normalization. Default is 0.1.
+       ./tana -version|-records|-alignment|-analyse|-format [--help|-h|-help]
+     [-alignmentfile str] [-alpha num] [-avefunsimfile str] [-beta num]
+     [-bscore] [-distributionfile str] [-edgefactor num] [-eta num]
+     [-formatfile str] [-neighbour] [-nmax int] [-numspecies int]
+     [-numthreads int] [-orthologyfile str] [-out] [-randomfile str]
+     [-recordsfile str] [-resultfolder str] [-task int] [-thrNt num]
+        Where:
+              --help|-h|-help
+             Print a short help message
+     -alignment
+        Execute the alignment algorithm.
+     -alignmentfile str
+        The filename of alignment which is required to either create or analyse.
+     -alpha num
+        Parameter controlling how much topology score contributes to the alignment score. Default is 0.5.
+     -analyse
+        Make analysis on alignment result.
+     -avefunsimfile str
+        The filename for functional similarity of alignment.
+     -beta num
+        Probability for randomly picking out the alignment records. Default is 1.0
+     -bscore
+        Use bitscore as the similarity of edges.
+     -distributionfile str
+        Output file for log ratio distribution.
+     -edgefactor num
+        The factor of the power law normalization. Default is 0.1.
+     -eta num
+        Threshold imfactor which is used to exclude match-sets from a single species. Default is 1.0.
+      -format
+        Process input or output file into proper format.
+      -formatfile str
+        Profile of input parameters.
+      -neighbour
+        Use neighborhood similarity for each unannotated protein during the prediction process.
       -nmax int
-         The parameter N for Simulated Annealing algorithm.
+        The parameter for SA algorithm N.
       -numspecies int
-         Number of the species used in the aligning process. Default is 3.
+        Number of the species compared. Default is 4.
       -numthreads int
-         Specifies the number of threads used to run TANA. 
-         The recommended number of threads is the number of cores available in the computer.
+        Number of threads running in parallel.
+      -orthologyfile str
+        Training data for orthology model.
+      -out
+        Print the alignment result into file.
+      -randomfile str
+        Training data for random model.
+      -records
+        Generate alignment records file.
+      -recordsfile str
+        Records file for writing and reading. It is used to store the triplet edges.
       -resultfolder str
-         The folder which was used to store the alignment results.
-      -temp int
-         The number of iteration for Simulated Annealing algorithm.
-      -thr num
-         The threshold for the alignment of protein-protein interaction networks.
+        The folder which was used as active folder in the data process.
+      -task int
+        Complete different tasks. The task was determined with other options such as -alignment together. Default is 1.
+      -thrNt num
+        Threshold factor which is used to exclude functional similarity below a given threshold between the unannotated protein its neighbours. Default is 0.7.
       -version
-         Show the version number of TANA.
+        Show the version number.
 
 (5)  The output
 
@@ -185,6 +214,4 @@ pairwise alignment of two input networks. The multiple case is similar.
 
        (6.3)Then you can find the all the involved output files in ./result/ . There are many other functions which you can see with "-help" option.
        (6.4) We note that checking the format of the files in the data folder after reading the execution instructions above might be quite helpful.
-       (6.5) For this example, download the gene annotation file (goa_arabidopsis.gaf.gz, goa_worm.gaf.gz, goa_fly.gaf.gz, goa_ecoli.gaf.gz, goa_human.gaf.gz, goa_mouse.gaf.gz, goa_rat.gaf.gz, goa_yeast.gaf.gz) for the eight species 
-       (Arabidopsis, Worm, Fly, Ecoli, Human, Mouse, Rat and Yeast) from the Uniprot Website "http://www.ebi.ac.uk/GOA/downloads" and uncompress them under the "TANA\data\goa" folder. In addition, download the compress file "goa_uniprot_gcrp.gaf.tar.gz" from the same Url, and also uncompress it under the "TANA\data\goa" folder.
-       Finally, download gene ontology file from the Website "http://www.geneontology.org/" and uncompress it under the "TANA\data" folder.
+       
