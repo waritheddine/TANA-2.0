@@ -176,7 +176,7 @@ pairwise alignment of two input networks. The multiple case is similar.
       -task int
         Complete different tasks. The task was determined with other options such as -alignment together. Default is 1.
       -thrNt num
-        Threshold factor which is used to exclude functional similarity below a given threshold between the unannotated protein its neighbours. Default is 0.7.
+        Threshold factor which is used to exclude functional similarity below a given threshold between the unannotated protein and its neighbours. Default is 0.7.
       -version
         Show the version number.
 
