@@ -224,3 +224,8 @@ pairwise alignment of two input networks. The multiple case is similar.
        (7.3)Then you can find the all the involved output files in ./result/ and prediction files in ./Predictions/. There are many other functions which you can see with "-help" option.
        (7.4) We note that checking the format of the files in the data folder after reading the execution instructions above might be quite helpful.
        
+(8) Important Note:
+we provide two executables programs compiled with:
+           
+        (8.1) GLIBC_2.27: the file is loacated in "TANA (GLIBC_2.27)/tana"
+        (8.2) GLIBC_2.19: the file is loacated in "TANA (GLIBC_2.19)/tana"
