@@ -227,5 +227,5 @@ pairwise alignment of two input networks. The multiple case is similar.
 (8) Important Note:
 we provide two executables programs compiled with:
            
-        (8.1) GLIBC_2.27: the file is loacated in "TANA (GLIBC_2.27)/tana"
-        (8.2) GLIBC_2.19: the file is loacated in "TANA (GLIBC_2.19)/tana"
+        (8.1) GLIBC_2.27: the file is located in "TANA (GLIBC_2.27)/tana"
+        (8.2) GLIBC_2.19: the file is located in "TANA (GLIBC_2.19)/tana"
