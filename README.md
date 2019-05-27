@@ -107,19 +107,12 @@ pairwise alignment of two input networks. The multiple case is similar.
 
 (4) Call the code. Here are samples:
     
-   (4.1) Network files using blast e-value:
-      
-      ./tana -alignment -alpha 0.3 -nmax 1000 -temp 50 -thr 0.3 -numspecies 3 -numthreads 8 -alignmentfile ./result/alignment_TANA.data -resultfolder ./result/
-    
-   (4.2) Network files using blast bitscore:
-      
-      ./tana -alignment -alpha 0.3 -nmax 1000 -temp 50 -thr 0.3 -numspecies 3 -bscore true -numthreads 8 -alignmentfile ./result/alignment_TANA.data -resultfolder ./result/
-      
-   (4.3) Using the network neighbour and the shared GOA during the prediction process:
+     
+   (4.1) Using the network neighbour and the shared GOA during the prediction process:
       
       ./tana -alignment -out -alpha 0.3 -nmax 3000 -bscore true -neighbour true -thrNt 0.9 -numspecies 9 -numthreads 4 -alignmentfile ./result/alignment_TANA.data -resultfolder ./result/
       
-   (4.4) Using only the shared GOA during the prediction process:
+   (4.2) Using only the shared GOA during the prediction process:
            
       ./tana -alignment -out -alpha 0.3 -nmax 3000 -bscore true -numspecies 9 -numthreads 4 -alignmentfile ./result/alignment_TANA.data -resultfolder ./result/
 
