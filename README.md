@@ -105,7 +105,7 @@ pairwise alignment of two input networks. The multiple case is similar.
 
  
 
-(4) Call the code. Here are samples:
+(4) Call the code using two different datasets (9 species from Eukaryotes or 9 species from prokaryotes): Here are samples:
     
      
    (4.1) Using the network neighbour and the shared GOA during the prediction process:
@@ -206,7 +206,7 @@ pairwise alignment of two input networks. The multiple case is similar.
        
        (7.1) Download TANA freely available at Github website: https://github.com/waritheddine/TANA-2.0
 
-       (7.2) Run TANA on our test dataset with command:
+       (7.2) Run TANA on our test dataset (9 species from Eukaryotes or 9 species from prokaryotes) with command:
        
        A) Prediction process based on transferring GOA from the shared GO terms and from the direct network neighbours:
        ./tana -alignment -out -alpha 0.3 -nmax 3000 -bscore true -neighbour true -thrNt 0.9 -numspecies 9 -numthreads 4 -alignmentfile ./result/alignment_TANA.data -resultfolder ./result/
