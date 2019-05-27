@@ -11,7 +11,7 @@ The executable TANA is compiled for Linux x86_64 platform.
 
 The program TANA finds a global alignment of multiple input
 networks. Given multiple networks with N1, N2,..., Nk nodes each,
-it returns a matching between the input networks, each match corresponding to
+it returns a matching between the input networks. Each match corresponds to
 best-matching nodes from the multiple networks.
 
 To understand how to use the algorithm, let's start with an example of
@@ -44,16 +44,13 @@ pairwise alignment of two input networks. The multiple case is similar.
      and in that case the header line should've a third column titled Weight_VAL.
 
   (2.2) Results of BLAST runs.
-     You'll need to perform an the all-against-all run
-     of BLAST between all the nodes of the two networks. You should store the results in 3 files:
+     You'll need to perform an the all-against-all run of BLAST between all the nodes of the two networks. You should store the results in 3 files:
 
         A-B.sim,  A-A.sim, B-B.sim
 
-     The files contain, as their names indicate, the results of BLAST runs
-     between species A & B, A & A, and B & B, respectively. IMPORTANT: for
-     files containing Blast scores between two species, the filename should
-     have the species names in lexicographic order, i.e., A-B.sim is
-     expected, not B-A.sim.
+     The files contain, as their names indicate, the results of BLAST runs between species A & B, A & A, and B & B, respectively. 
+IMPORTANT: for   files containing Blast scores between two species, the filename should
+     have the species names in lexicographic order, i.e., A-B.sim is expected, not B-A.sim.
 
      The first 5 lines of the A-B.sim file are:
 
@@ -72,10 +69,9 @@ pairwise alignment of two input networks. The multiple case is similar.
 
   (2.3)  Gene ontology (GO) File
  
-  (2.4) GO annotation file which contains GO annotations for proteins in the input networks. The format of this GO annotation file should be compliant with the GO consortium.
+  (2.4) The GO annotation file which contains GO annotations for proteins in the input networks. The format of this GO annotation file should be compliant with the GO consortium.
      
-    A) File: goa_uniprot_gcrp.gaf → This set contains all GO annotations for canonical accessions
-      from the UniProt reference proteomes for all species, which provide one protein per gene.
+    A) File: goa_uniprot_gcrp.gaf → This set contains all GO annotations for canonical accessions from the UniProt reference proteomes for all species, which provide one protein per gene.
 
 
 (3) Create a file that specifies the file locations, species names etc.
@@ -105,7 +101,7 @@ pairwise alignment of two input networks. The multiple case is similar.
 
  
 
-(4) Call the code using two different datasets (9 species from Eukaryotes or 9 species from prokaryotes): Here are samples:
+(4) Call the code using two different datasets (9 species from eukaryotes or 9 species from prokaryotes): Here are samples:
     
      
    (4.1) Using the network neighbour and the shared GOA during the prediction process:
@@ -118,7 +114,6 @@ pairwise alignment of two input networks. The multiple case is similar.
 
    The options are as follows (you can also use the "-h" or "--help" flag):
 
-     Usage: 
      Usage:
        ./tana -version|-records|-alignment|-analyse|-format [--help|-h|-help]
      [-alignmentfile str] [-alpha num] [-avefunsimfile str] [-beta num]
@@ -143,41 +138,41 @@ pairwise alignment of two input networks. The multiple case is similar.
         Probability for randomly picking out the alignment records. Default is 1.0
      -bscore
         Use bitscore as the similarity of edges.
-     -distributionfile str
+     -distributionfile str:
         Output file for log ratio distribution.
-     -edgefactor num
+     -edgefactor num:
         The factor of the power law normalization. Default is 0.1.
-     -eta num
-        Threshold imfactor which is used to exclude match-sets from a single species. Default is 1.0.
-      -format
+     -eta num:
+        Threshold imfactor which is used to exclude match-sets from a single species. By default, it  is set equal to 1.0.
+      -format:
         Process input or output file into proper format.
-      -formatfile str
+      -formatfile str:
         Profile of input parameters.
-      -neighbour
+      -neighbour:
         Use neighborhood similarity for each unannotated protein during the prediction process.
-      -nmax int
+      -nmax int:
         The parameter for SA algorithm N.
-      -numspecies int
+      -numspecies int :
         Number of the species compared. Default is 4.
       -numthreads int
         Number of threads running in parallel.
-      -orthologyfile str
+      -orthologyfile str:
         Training data for orthology model.
-      -out
+      -out:
         Print the alignment result into file.
-      -randomfile str
+      -randomfile str:
         Training data for random model.
-      -records
+      -records:
         Generate alignment records file.
-      -recordsfile str
+      -recordsfile str:
         Records file for writing and reading. It is used to store the triplet edges.
-      -resultfolder str
+      -resultfolder str:
         The folder which was used as active folder in the data process.
-      -task int
-        Complete different tasks. The task was determined with other options such as -alignment together. Default is 1.
-      -thrNt num
-        Threshold factor which is used to exclude functional similarity below a given threshold between the unannotated protein and its neighbours. Default is 0.7.
-      -version
+      -task int :
+        Complete different tasks. The task was determined with other options such as -alignment together. By default, it is set equal to 1.
+      -thrNt num:
+        Threshold factor which is used to exclude functional similarity below a given threshold between the unannotated protein and its neighbours. By default, it is set equal to 0.7.
+      -version:
         Show the version number.
 
 (5)  The output
@@ -206,12 +201,12 @@ pairwise alignment of two input networks. The multiple case is similar.
        
        (7.1) Download TANA-2.0 freely available at Github website: https://github.com/waritheddine/TANA-2.0
 
-       (7.2) Run TANA on our test dataset (9 species from Eukaryotes or 9 species from prokaryotes) with command:
+       (7.2) Run TANA on our test dataset (9 species from eukaryotes or 9 species from prokaryotes) with command:
        
        A) Prediction process based on transferring GOA from the shared GO terms and from the direct network neighbours:
        ./tana -alignment -out -alpha 0.3 -nmax 3000 -bscore true -neighbour true -thrNt 0.9 -numspecies 9 -numthreads 4 -alignmentfile ./result/alignment_TANA.data -resultfolder ./result/
        
-       B)Prediction process based on only on transferring GOA from the shared GO terms :
+       B)Prediction process based only on transferring GOA from the shared GO terms :
        ./tana -alignment -out -alpha 0.3 -nmax 3000 -bscore true -numspecies 9 -numthreads 4 -alignmentfile ./result/alignment_TANA.data -resultfolder ./result/
        
        (7.3)Then you can find the all the involved output files in ./result/ and prediction files in ./Predictions/. There are many other functions which you can see with "-help" option.
